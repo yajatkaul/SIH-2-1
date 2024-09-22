@@ -1,13 +1,28 @@
-// @ts-nocheck
+//@ts-nocheck
 "use client";
+import { useKeyWords } from "@/hooks/getKeywords";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FileAudio } from "lucide-react";
+import { useEffect, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  function extractKeywords(responseText: string) {
+    if (!responseText) return;
+    const result = [];
+    const lines = responseText.split("\n");
+    const bulletPoints = lines.filter((line) => line.trim().startsWith("*"));
+    const cleanedBulletPoints = bulletPoints.map((point) =>
+      point.replace("*", "").trim()
+    );
+    result.push(...cleanedBulletPoints);
+
+    return result;
+  }
+
   useGSAP(() => {
     gsap.from("#LogoHeader", {
       opacity: 0,
@@ -55,11 +70,32 @@ export default function Home() {
         scrub: 4,
       },
     });
+
+    gsap.from("#page2", {
+      opacity: 0,
+      x: -100,
+      duration: 1,
+      stagger: 0.3,
+      scrollTrigger: {
+        trigger: "#page2",
+        start: "top 100%",
+        end: "top 30%",
+        scrub: 4,
+      },
+    });
   });
+
+  const [file, setFile] = useState();
+  const { loading, send, data } = useKeyWords();
+  const [formatData, setFormatData] = useState();
+
+  useEffect(() => {
+    setFormatData(extractKeywords(data));
+  }, [data]);
 
   return (
     <div>
-      <div className="flex h-[90px] justify-between">
+      <div className="md:flex h-[90px] justify-between hidden">
         <img
           src="/LogoWithName.png"
           alt=""
@@ -105,7 +141,7 @@ export default function Home() {
       </div>
 
       <div
-        className="h-screen flex bg-[#161616] flex-col overflow-hidden"
+        className="min-h-screen flex bg-[#161616] flex-col overflow-hidden"
         id="page1"
       >
         <p
@@ -115,8 +151,8 @@ export default function Home() {
           About Us
         </p>
         <div className="flex text-[20px] font-bold gap-8 justify-center flex-col items-center">
-          <div className="flex gap-8 pr-[300px]">
-            <img src="/img1.png" alt="" className="flex w-[250px] h-[240px]" />
+          <div className="flex gap-8 md:pr-[300px] pr-[0px] md:flex-row flex-col">
+            <img src="/img1.png" alt="" className="flex w-[250px] h-[240px] " />
             <p className="w-[300px]">
               VaniSutra uses pre-trained audio feature extraction with Few-Shot
               models like Prototypical Networks to detect keywords with minimal
@@ -124,7 +160,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex gap-8 pl-[300px]">
+          <div className="flex gap-8 md:pl-[300px] pl-[0px] md:flex-row flex-col">
             <img src="/img2.png" alt="" className="flex w-[200px] h-[240px]" />
             <p className="w-[300px]">
               It handles various sample rates (8kHz-48kHz) with audio
@@ -133,7 +169,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex gap-8 pr-[300px]">
+          <div className="flex gap-8 md:pr-[300px] pr-[0px] md:flex-row flex-col">
             <img src="/img3.png" alt="" className="flex w-[200px] h-[240px]" />
             <p className="w-[300px]">
               Keywords are localized with sliding windows or attention, and the
@@ -145,7 +181,7 @@ export default function Home() {
       </div>
 
       <div
-        className="h-screen flex flex-col bg-[#242424] items-center"
+        className="min-h-screen flex flex-col bg-[#242424] items-center"
         id="page2"
       >
         <p
@@ -162,22 +198,61 @@ export default function Home() {
         </p>
         <div className="flex flex-col justify-center items-center gap-4">
           <div
-            className="bg-[#292828] w-[400px] flex justify-center items-center flex-col h-[80px] rounded-[30px] hover:cursor-pointer hover:bg-[#222020]"
+            className="bg-[#292828] w-[300px] h-[80px] md:w-[400px] flex justify-center items-center flex-col rounded-[30px] hover:cursor-pointer hover:bg-[#222020]"
             onClick={() => document.getElementById("file_input")?.click()}
           >
             Input Audio
             <FileAudio />
           </div>
-          <button className="bg-[#292828] p-[10px] rounded-[30px] text-[20px] font-bold h-[60px] w-[100px] hover:bg-[#222020]">
-            Submit
-          </button>
-          <input type="file" className="hidden" id="file_input" />
+          {loading ? (
+            <button className="bg-[#292828] p-[10px] rounded-[30px] text-[20px] font-bold h-[60px] w-[100px] hover:bg-[#222020]">
+              <span className="loading loading-ring loading-lg"></span>
+            </button>
+          ) : (
+            <button
+              className="bg-[#292828] p-[10px] rounded-[30px] text-[20px] font-bold h-[60px] w-[100px] hover:bg-[#222020]"
+              onClick={() => {
+                send(file);
+              }}
+            >
+              Submit
+            </button>
+          )}
+
+          <input
+            type="file"
+            className="hidden"
+            id="file_input"
+            onChange={(e) => {
+              setFile(e.target.files[0]);
+            }}
+          />
+        </div>
+
+        <div className="flex flex-col items-center justify-center">
+          {formatData ? (
+            <p className="text-[50px] font-bold">
+              Potential keywords found are:
+            </p>
+          ) : (
+            ""
+          )}
+          {formatData?.map((data, index) => {
+            return (
+              <p
+                key={index}
+                className="flex items-center justify-center font-bold text-[30px]"
+              >
+                - {data}
+              </p>
+            );
+          })}
         </div>
       </div>
 
       <div className="flex flex-col bg-[#000000]">
         <p
-          className="flex justify-center w-full text-[40px] font-bold"
+          className="flex justify-center w-full md:text-[40px] font-bold text-[25px]"
           id="nav3"
         >
           Concerned Departments
@@ -203,7 +278,7 @@ export default function Home() {
               className="h-[300px] w-[280px] object-contain"
             />
             <img src="/NDRF.png" alt="" className="h-[300px]" />
-
+            {}
             <img src="/NTRO.png" alt="" className="h-[350px]" />
             <img
               src="/DRDO.png"
@@ -216,7 +291,47 @@ export default function Home() {
               className="h-[300px] w-[280px] object-contain"
             />
             <img src="/NSA.png" alt="" className="h-[300px]" />
-            <img src="/RAW.png" alt="" className="h-[300px]" />
+            <img src="/FBI.png" alt="" className="h-[300px]" />
+            <img
+              src="/FCC.png"
+              alt=""
+              className="h-[300px] w-[280px] object-contain"
+            />
+            <img src="/NDRF.png" alt="" className="h-[300px]" />
+            {}
+            <img src="/NTRO.png" alt="" className="h-[350px]" />
+            <img
+              src="/DRDO.png"
+              alt=""
+              className="h-[300px] w-[280px] object-contain"
+            />
+            <img
+              src="/CBI.png"
+              alt=""
+              className="h-[300px] w-[280px] object-contain"
+            />
+            <img src="/NSA.png" alt="" className="h-[300px]" />
+            <img src="/FBI.png" alt="" className="h-[300px]" />
+            <img
+              src="/FCC.png"
+              alt=""
+              className="h-[300px] w-[280px] object-contain"
+            />
+            <img src="/NDRF.png" alt="" className="h-[300px]" />
+            {}
+            <img src="/NTRO.png" alt="" className="h-[350px]" />
+            <img
+              src="/DRDO.png"
+              alt=""
+              className="h-[300px] w-[280px] object-contain"
+            />
+            <img
+              src="/CBI.png"
+              alt=""
+              className="h-[300px] w-[280px] object-contain"
+            />
+            <img src="/NSA.png" alt="" className="h-[300px]" />
+            <img src="/FBI.png" alt="" className="h-[300px]" />
             <img
               src="/FCC.png"
               alt=""
