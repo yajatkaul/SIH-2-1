@@ -37,7 +37,15 @@ body {
 
 .animate-scroll {
   display: flex;
-  gap: 4rem; /* Adjust based on your layout */
+  gap: 4rem;
   animation: scroll 20s linear infinite;
-  width: max-content; /* Ensure it doesn't shrink */
+  width: max-content;
+}
+
+@font-face {
+  font-family: "CustomFont";
+  src: url("/fonts/GeistMonoVF.woff") format("woff"),
+    url("/fonts/GeistMonoVF.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }

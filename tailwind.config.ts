@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        customFont: ["CustomFont"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -15,5 +18,9 @@ const config: Config = {
     },
   },
   plugins: [require("daisyui")],
+
+  daisyui: {
+    themes: ["light"],
+  },
 };
 export default config;
