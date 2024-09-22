@@ -106,7 +106,7 @@ export default function Home() {
             <p className="cursor-pointer">About Us</p>
             <p className="cursor-pointer">Features</p>
             <p className="cursor-pointer">Services</p>
-            <p className="bg-black text-white rounded-[50px] h-full flex items-center w-[140px] justify-center">
+            <p className="bg-black text-white rounded-[50px] h-full flex items-center w-[140px] justify-center cursor-pointer">
               Contact
             </p>
           </div>
