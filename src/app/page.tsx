@@ -12,9 +12,39 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const [file, setFile] = useState();
   const { loading, send, data } = useKeyWords();
+  const [details, setDetails] = useState({
+    yourName: "",
+    email: "",
+    phoneNo: "",
+    gender: "",
+    message: "",
+  });
 
   const getKeywords = () => {
     send(file);
+  };
+
+  const contactUs = async (e) => {
+    e.preventDefault();
+    //setResult("Sending....");
+    const formData = new FormData(e.target);
+
+    formData.append("access_key", "a5176d07-5b02-4d29-80e9-be00b94662a6");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      //setResult("Form Submitted Successfully");
+      e.target.reset();
+    } else {
+      console.log("Error", data);
+      //setResult(data.message);
+    }
   };
 
   return (
@@ -454,50 +484,77 @@ export default function Home() {
 
           <div className="flex-col">
             <p className="text-[30px]">Get in touch</p>
-            <div className="flex flex-col gap-2">
-              <div>
-                <div className="flex gap-2 md:flex-row flex-col">
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    className="input input-bordered"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    className="input input-bordered"
-                  />
+            <form onSubmit={contactUs}>
+              <div className="flex flex-col gap-2">
+                <div>
+                  <div className="flex gap-2 md:flex-row flex-col">
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      name="Name"
+                      className="input input-bordered"
+                      onChange={(e) => {
+                        setDetails({ ...details, yourName: e.target.value });
+                      }}
+                      defaultValue={details.yourName}
+                    />
+                    <input
+                      type="email"
+                      name="Email"
+                      placeholder="Email"
+                      className="input input-bordered"
+                      onChange={(e) => {
+                        setDetails({ ...details, email: e.target.value });
+                      }}
+                      defaultValue={details.email}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex gap-2 md:flex-row flex-col">
+                    <input
+                      type="number"
+                      placeholder="Phone no"
+                      className="input input-bordered"
+                      name="Phone No"
+                      onChange={(e) => {
+                        setDetails({ ...details, phoneNo: e.target.value });
+                      }}
+                      defaultValue={details.phoneNo}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Gender"
+                      name="Gender"
+                      className="input input-bordered"
+                      onChange={(e) => {
+                        setDetails({ ...details, gender: e.target.value });
+                      }}
+                      defaultValue={details.gender}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <textarea
+                    className="textarea textarea-bordered w-full"
+                    name="Message"
+                    placeholder="Message"
+                    onChange={(e) => {
+                      setDetails({ ...details, message: e.target.value });
+                    }}
+                    defaultValue={details.message}
+                  ></textarea>
+                </div>
+
+                <div>
+                  <button className="bg-black text-orange-600 font-bold h-[60px] w-[300px] rounded-[20px] text-[30px]">
+                    Submit
+                  </button>
                 </div>
               </div>
-
-              <div>
-                <div className="flex gap-2 md:flex-row flex-col">
-                  <input
-                    type="text"
-                    placeholder="Phone no"
-                    className="input input-bordered"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Gender"
-                    className="input input-bordered"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <textarea
-                  className="textarea textarea-bordered w-full"
-                  placeholder="Message"
-                ></textarea>
-              </div>
-
-              <div>
-                <button className="bg-black text-orange-600 font-bold h-[60px] w-[300px] rounded-[20px] text-[30px]">
-                  Submit
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
 

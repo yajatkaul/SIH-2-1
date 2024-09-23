@@ -49,3 +49,44 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px; /* More rounding for the thumb */
+  border: 2px solid #f1f1f1; /* Adds a space around the thumb for better visual appeal */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Removing the scrollbar arrows in Chrome, Safari, and Edge */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
