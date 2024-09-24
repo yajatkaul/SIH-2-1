@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon.png" />
       </head>
       <body className={`antialiased bg-white font-customFont`}>{children}</body>
     </html>

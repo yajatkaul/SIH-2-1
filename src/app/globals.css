@@ -44,8 +44,8 @@ body {
 
 @font-face {
   font-family: "CustomFont";
-  src: url("/fonts/GeistMonoVF.woff") format("woff"),
-    url("/fonts/GeistMonoVF.woff") format("woff");
+  src: url("/Fonts/GeistMonoVF.woff") format("woff"),
+    url("/Fonts/GeistMonoVF.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }

@@ -395,7 +395,14 @@ export default function Home() {
               How will it help us?
             </div>
             <div className="collapse-content">
-              <p>Placeholder</p>
+              <p>
+                Our services enhance operational efficiency by automating speech
+                recognition and keyword monitoring, ensuring compliance and
+                security with real-time alerts. We integrate advanced audio
+                analytics for data-driven decision-making and provide 24/7
+                support, ensuring your systems are reliable, secure, and always
+                operational.
+              </p>
             </div>
           </div>
           <div
@@ -406,7 +413,14 @@ export default function Home() {
               Who all are using it ?
             </div>
             <div className="collapse-content">
-              <p>Placeholder</p>
+              <p>
+                Our system is utilized by organizations across various
+                industries such as healthcare, legal, customer service, and
+                security. These sectors rely on accurate speech recognition,
+                real-time monitoring, and compliance checks to streamline their
+                workflows, enhance decision-making, and ensure regulatory
+                adherence.
+              </p>
             </div>
           </div>
           <div
@@ -417,7 +431,14 @@ export default function Home() {
               What is the tech stack behind it ?
             </div>
             <div className="collapse-content">
-              <p>Placeholder</p>
+              <p>
+                The system uses a robust tech stack, including Python for
+                backend processing, TensorFlow and PyTorch for machine learning,
+                Wav2Vec 2.0 for speech recognition, and BERT for natural
+                language processing. We also employ Flask and Prometheus for
+                real-time monitoring and alerts, integrated with cloud platforms
+                like AWS.
+              </p>
             </div>
           </div>
           <div
@@ -428,7 +449,14 @@ export default function Home() {
               Why we need this kind of system ?
             </div>
             <div className="collapse-content">
-              <p>Placeholder</p>
+              <p>
+                This system is crucial for automating the processing of large
+                volumes of audio data, ensuring compliance with regulatory
+                standards, improving operational efficiency, and enabling
+                real-time insights. It helps organizations save time and
+                resources while enhancing decision-making and ensuring security
+                through timely alerts.
+              </p>
             </div>
           </div>
           <div
@@ -439,7 +467,14 @@ export default function Home() {
               What is the purpose of this system ?
             </div>
             <div className="collapse-content">
-              <p>Placeholder</p>
+              <p>
+                The primary purpose of the system is to convert speech into
+                actionable insights through real-time keyword spotting, ensuring
+                compliance and security, and providing detailed analytics. It
+                serves to optimize workflows, automate tedious tasks, and
+                support data-driven decision-making in organizations
+                handling audio data.
+              </p>
             </div>
           </div>
         </div>
