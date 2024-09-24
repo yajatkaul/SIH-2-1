@@ -21,7 +21,7 @@ export const getKeywords = async (req, res) => {
 
     const data = await response.json();
 
-    /* 
+    /*
     const ollamaResponse = await ollama.chat({
       model: "gemma2:2b",
       messages: [
