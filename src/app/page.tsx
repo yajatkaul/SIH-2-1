@@ -491,29 +491,11 @@ export default function Home() {
               <p>Address</p>
               <hr className="border-orange-600" />
               <p className="max-w-[300px] mt-[10px] mb-[10px] text-wrap">
-                House no 164-A ,street no 2 near lavanya hospital,maidan garhi
-                ext chattarpur,New Delhi 110070
+                maidan garhi ext chattarpur,New Delhi 110070
               </p>
               <hr className="border-orange-600" />
-              <p>Contact No +91 882147754</p>
-              <p>E-mail : vanisutra10@gmail.com</p>
-              <div className="flex gap-[10px] mt-[20px] ml-[20px]">
-                <img
-                  src="/facebook.png"
-                  alt=""
-                  className="max-h-[60px] cursor-pointer"
-                />
-                <img
-                  src="/linkedin.png"
-                  alt=""
-                  className="max-h-[60px] cursor-pointer"
-                />
-                <img
-                  src="/twitter.png"
-                  alt=""
-                  className="max-h-[60px] cursor-pointer"
-                />
-              </div>
+              <p>Contact No +91 9876543210</p>
+              <p>E-mail : teamvaani.projects@gmail.com</p>
             </div>
           </div>
 
