@@ -579,7 +579,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-black flex justify-center h-[80px] text-[30px] font-bold text-white w-full items-center text-center">
+        <div className="bg-black flex justify-center h-[90px] text-[30px] font-bold text-white w-full items-center text-center">
           All Right Reserved @vanisutra
         </div>
       </div>
