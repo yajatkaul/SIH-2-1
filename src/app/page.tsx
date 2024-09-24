@@ -177,11 +177,15 @@ export default function Home() {
             </div>
           </div>
 
-          <img src="/aboutus1.png" alt="" className="max-h-[400px]" />
+          <img src="/aboutus1.jpg" alt="" className="max-h-[400px]" />
         </div>
 
         <div className="flex gap-8 items-center md:flex-row flex-col-reverse">
-          <img src="/aboutus2.png" alt="" className="max-h-[300px]" />
+          <img
+            src="/aboutus2.jpg"
+            alt=""
+            className="max-h-[300px] rounded-[30px]"
+          />
 
           <div className="flex flex-col">
             <div className="flex gap-2">
@@ -215,7 +219,7 @@ export default function Home() {
         <div className="flex text-black w-full flex-wrap gap-[80px] justify-center">
           <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
             <div className="h-full flex justify-center items-center">
-              <img src="/feature1.png" alt="" />
+              <img src="/feature1.jpg" alt="" />
             </div>
 
             <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
@@ -232,7 +236,7 @@ export default function Home() {
 
           <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
             <div className="h-full flex justify-center items-center">
-              <img src="/feature2.png" alt="" />
+              <img src="/feature2.jpg" alt="" />
             </div>
 
             <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
@@ -250,7 +254,7 @@ export default function Home() {
 
           <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
             <div className="h-full flex justify-center items-center">
-              <img src="/feature3.png" alt="" />
+              <img src="/feature3.jpg" alt="" />
             </div>
 
             <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
@@ -268,7 +272,7 @@ export default function Home() {
 
           <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
             <div className="h-full flex justify-center items-center">
-              <img src="/feature4.png" alt="" />
+              <img src="/feature4.jpg" alt="" />
             </div>
 
             <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
@@ -297,7 +301,7 @@ export default function Home() {
         <div className="flex text-black w-full flex-wrap gap-[80px] justify-center">
           <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
             <div className="h-full flex justify-center items-center">
-              <img src="/service1.png" alt="" />
+              <img src="/service1.jpg" alt="" />
             </div>
 
             <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
@@ -352,7 +356,7 @@ export default function Home() {
 
           <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
             <div className="h-full flex justify-center items-center">
-              <img src="/service4.png" alt="" />
+              <img src="/service4.jpg" alt="" />
             </div>
 
             <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
