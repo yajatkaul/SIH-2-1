@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FileAudio } from "lucide-react";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,6 +22,7 @@ export default function Home() {
   });
 
   const getKeywords = () => {
+    if (!file) return toast.error("Please select a file!");
     send(file);
   };
 
@@ -130,10 +132,15 @@ export default function Home() {
                   Input Here
                 </button>
                 <button
-                  className="bg-black h-[70px] rounded-[30px] text-orange-600 text-[25px] font-bold"
+                  className="bg-black h-[70px] rounded-[30px] text-orange-600 text-[25px] font-bold flex justify-center items-center"
                   onClick={() => getKeywords()}
+                  disabled={loading}
                 >
-                  Submit
+                  {loading ? (
+                    <span className="loading loading-ring loading-lg" />
+                  ) : (
+                    "Submit"
+                  )}
                 </button>
                 {!data ? "" : <p>This audio is being indicated as: {data}</p>}
               </div>
@@ -216,74 +223,79 @@ export default function Home() {
           <p className="text-orange-600">ures</p>
         </div>
 
-        <div className="flex text-black w-full flex-wrap gap-[80px] justify-center">
-          <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
-            <div className="h-full flex justify-center items-center">
-              <img src="/feature1.jpg" alt="" />
+        <div className="flex text-black w-full flex-col gap-[80px] justify-center items-center">
+          <div className="flex gap-[50px] flex-wrap justify-center">
+            <div className="w-[300px] md:w-[500px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <div className="h-full flex justify-center items-center">
+                <img src="/feature1.jpg" alt="" />
+              </div>
+
+              <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
+                Language-Agnostic Keyword Spotting
+              </p>
+              <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
+                <p className="text-center">
+                  The system identifies keywords across multiple languages using
+                  advanced models like Wav2Vec 2.0 and BERT, ensuring accurate
+                  keyword detection without relying on language-specific
+                  features.
+                </p>
+              </div>
             </div>
 
-            <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
-              Language-Agnostic Keyword Spotting
-            </p>
-            <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
-              <p className="text-center">
-                The system identifies keywords across multiple languages using
-                advanced models like Wav2Vec 2.0 and BERT, ensuring accurate
-                keyword detection without relying on language-specific features.
+            <div className="w-[300px] md:w-[500px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <div className="h-full flex justify-center items-center">
+                <img src="/feature2.jpg" alt="" />
+              </div>
+
+              <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
+                Context-Aware Detection
               </p>
+              <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
+                <p className="text-center">
+                  The system enhances keyword detection by incorporating
+                  contextual cues such as time of day, user behavior, and
+                  location, ensuring more relevant and precise keyword
+                  identification.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
-            <div className="h-full flex justify-center items-center">
-              <img src="/feature2.jpg" alt="" />
-            </div>
+          <div className="flex gap-[50px] flex-wrap items-center justify-center">
+            <div className="w-[300px] md:w-[500px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <div className="h-full flex justify-center items-center">
+                <img src="/feature3.jpg" alt="" />
+              </div>
 
-            <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
-              Context-Aware Detection
-            </p>
-            <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
-              <p className="text-center">
-                The system enhances keyword detection by incorporating
-                contextual cues such as time of day, user behavior, and
-                location, ensuring more relevant and precise keyword
-                identification.
+              <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
+                Real-Time Alerts and Monitoring
               </p>
+              <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
+                <p className="text-center">
+                  Integrated real-time alerts notify users of any mismatches or
+                  errors in the extracted data, while Flask and Prometheus
+                  enable ongoing system performance monitoring and visualization
+                  for efficient operations.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
-            <div className="h-full flex justify-center items-center">
-              <img src="/feature3.jpg" alt="" />
-            </div>
+            <div className="w-[300px] md:w-[500px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <div className="h-full flex justify-center items-center">
+                <img src="/feature4.jpg" alt="" />
+              </div>
 
-            <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
-              Real-Time Alerts and Monitoring
-            </p>
-            <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
-              <p className="text-center">
-                Integrated real-time alerts notify users of any mismatches or
-                errors in the extracted data, while Flask and Prometheus enable
-                ongoing system performance monitoring and visualization for
-                efficient operations.
+              <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
+                Real-Time Speech-to-Text Conversion
               </p>
-            </div>
-          </div>
-
-          <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
-            <div className="h-full flex justify-center items-center">
-              <img src="/feature4.jpg" alt="" />
-            </div>
-
-            <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
-              Real-Time Speech-to-Text Conversion
-            </p>
-            <div className="flex flex-col md:text-[20px] text-[10px] mt-[10px]">
-              <p className="text-center">
-                Audio is converted into text in real-time using tools like
-                Google Speech-to-Text or DeepSpeech, allowing for immediate
-                transcription and analysis of spoken content.
-              </p>
+              <div className="flex flex-col md:text-[20px] text-[10px] mt-[10px]">
+                <p className="text-center">
+                  Audio is converted into text in real-time using tools like
+                  Google Speech-to-Text or DeepSpeech, allowing for immediate
+                  transcription and analysis of spoken content.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -298,77 +310,81 @@ export default function Home() {
           <p className="text-orange-600">ices</p>
         </div>
 
-        <div className="flex text-black w-full flex-wrap gap-[80px] justify-center">
-          <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
-            <div className="h-full flex justify-center items-center">
-              <img src="/service1.jpg" alt="" />
+        <div className="flex text-black w-full flex-col gap-[80px] justify-center items-center">
+          <div className="flex gap-[50px] flex-wrap justify-center">
+            <div className="w-[300px] md:w-[500px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <div className="h-full flex justify-center items-center">
+                <img src="/service1.jpg" alt="" />
+              </div>
+
+              <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
+                Tailored Speech Recognition Solutions
+              </p>
+              <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
+                <p className="text-center">
+                  We design and implement customized speech-to-text systems for
+                  organizations, enabling seamless conversion of spoken language
+                  into accurate, actionable data tailored to specific industries
+                  like legal, healthcare, and customer service.
+                </p>
+              </div>
             </div>
 
-            <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
-              Tailored Speech Recognition Solutions
-            </p>
-            <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
-              <p className="text-center">
-                We design and implement customized speech-to-text systems for
-                organizations, enabling seamless conversion of spoken language
-                into accurate, actionable data tailored to specific industries
-                like legal, healthcare, and customer service.
+            <div className="w-[300px] md:w-[500px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <div className="h-full flex justify-center items-center">
+                <img src="/service2.png" alt="" />
+              </div>
+
+              <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
+                Keyword Monitoring & Compliance Audits
               </p>
+              <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
+                <p className="text-center">
+                  Our service offers real-time keyword monitoring to help
+                  organizations track and analyze conversations for compliance,
+                  security, or quality assurance purposes, ensuring adherence to
+                  industry regulations and internal standards.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
-            <div className="h-full flex justify-center items-center">
-              <img src="/service2.png" alt="" />
-            </div>
+          <div className="flex gap-[50px] flex-wrap items-center justify-center">
+            <div className="w-[300px] md:w-[500px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <div className="h-full flex justify-center items-center">
+                <img src="/service3.png" alt="" />
+              </div>
 
-            <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
-              Keyword Monitoring & Compliance Audits
-            </p>
-            <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
-              <p className="text-center">
-                Our service offers real-time keyword monitoring to help
-                organizations track and analyze conversations for compliance,
-                security, or quality assurance purposes, ensuring adherence to
-                industry regulations and internal standards.
+              <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
+                Enterprise-Grade Audio Analytics Integration
               </p>
+              <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
+                <p className="text-center">
+                  We integrate advanced audio analytics into your existing
+                  platforms, providing detailed insights from voice data that
+                  enhance decision-making and operational efficiency, while
+                  ensuring compatibility with your existing tools and
+                  infrastructure.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
-            <div className="h-full flex justify-center items-center">
-              <img src="/service3.png" alt="" />
-            </div>
+            <div className="w-[300px] md:w-[500px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <div className="h-full flex justify-center items-center">
+                <img src="/service4.jpg" alt="" />
+              </div>
 
-            <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
-              Enterprise-Grade Audio Analytics Integration
-            </p>
-            <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
-              <p className="text-center">
-                We integrate advanced audio analytics into your existing
-                platforms, providing detailed insights from voice data that
-                enhance decision-making and operational efficiency, while
-                ensuring compatibility with your existing tools and
-                infrastructure.
+              <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
+                24/7 Real-Time Alerting & Support
               </p>
-            </div>
-          </div>
-
-          <div className="w-[600px] flex flex-col shadow-md shadow-black p-[10px] rounded-[30px] cursor-pointer transition-transform duration-300 hover:scale-105">
-            <div className="h-full flex justify-center items-center">
-              <img src="/service4.jpg" alt="" />
-            </div>
-
-            <p className="text-[#A0674E] md:text-[30px] text-[20px] flex justify-center text-center">
-              24/7 Real-Time Alerting & Support
-            </p>
-            <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
-              <p className="text-center">
-                We offer continuous, real-time alert systems for critical
-                keyword detection or discrepancies, alongside 24/7 support to
-                ensure your organization’s systems are always optimized and
-                functional.
-              </p>
+              <div className="flex flex-col md:text-[20px] text-[15px] mt-[10px]">
+                <p className="text-center">
+                  We offer continuous, real-time alert systems for critical
+                  keyword detection or discrepancies, alongside 24/7 support to
+                  ensure your organization’s systems are always optimized and
+                  functional.
+                </p>
+              </div>
             </div>
           </div>
         </div>

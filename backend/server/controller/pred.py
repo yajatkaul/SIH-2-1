@@ -37,17 +37,17 @@ class AudioClassifier(nn.Module):
         return x
 
 def load_model(model_path, input_dim, num_classes):
-    model = AudioClassifier(input_dim, num_classes).to(device)  # Ensure model is on CPU
-    model.load_state_dict(torch.load(model_path, map_location=device))  # Load model state on CPU
-    model.eval()  # Set to evaluation mode
+    model = AudioClassifier(input_dim, num_classes).to(device) 
+    model.load_state_dict(torch.load(model_path, map_location=device))  
+    model.eval()  
     return model
 
 def trim_silence(waveform, threshold=0.01, padding=0.1):
     """Trims leading and trailing silence from the waveform."""
-    waveform_np = waveform.cpu().numpy()[0]  # Take the first channel
+    waveform_np = waveform.cpu().numpy()[0]  
     non_silent_indices = np.where(np.abs(waveform_np) > threshold)[0]
 
-    if len(non_silent_indices) == 0:  # All silent
+    if len(non_silent_indices) == 0:  
         return waveform
 
     start = max(0, non_silent_indices[0] - int(padding * 16000))
@@ -57,12 +57,12 @@ def trim_silence(waveform, threshold=0.01, padding=0.1):
     return trimmed_waveform
 
 def extract_features(audio_path):
-    waveform, _ = torchaudio.load(audio_path)  # Load the waveform
-    waveform = trim_silence(waveform)  # Trim silence
-    waveform = waveform.to(device)  # Move waveform to CPU
+    waveform, _ = torchaudio.load(audio_path)
+    waveform = trim_silence(waveform)
+    waveform = waveform.to(device)
     with torch.no_grad():
-        features = wav2vec_model(waveform).last_hidden_state  # Extract features
-    return features.mean(dim=1)  # Aggregate features across time steps
+        features = wav2vec_model(waveform).last_hidden_state  
+    return features.mean(dim=1)
 
 def predict(model, audio_path, label_mapping):
     features = extract_features(audio_path)  # Extract features from the audio
